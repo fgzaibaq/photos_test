@@ -19,6 +19,26 @@
             margin: 0;
         }
         </style>
+	<style>
+	.leaflet-popup-content {
+  	width: 320px !important;
+	}
+	.popup-image-box {
+  	width: 300px;
+  	height: 300px;
+  	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	background: #f7f7f7;
+  	margin: 6px auto;
+	}
+	.popup-image-box img {
+  	max-width: 100%;
+  	max-height: 100%;
+  	object-fit: contain;
+  	border-radius: 6px;
+	}
+	</style>
         <title></title>
     </head>
     <body>
@@ -147,9 +167,18 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['Longitude'] !== null ? autolinker.link(String(feature.properties['Longitude']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Image URL'] !== null ? autolinker.link(String(feature.properties['Image URL']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
+                    '<tr>\
+  			<td colspan="2">' + (feature.properties['Image URL'] !== null ?
+  '<div class="popup-image-box">' + '<img src="images/' + String(feature.properties['Image URL'])
+    .replace(/[\\/:]/g, '_')
+    .trim()
+    .replace(/\'/g, "\\'")
+    .replace(/"/g, '&quot;') +
+  '">' +
+  '</div>' : '') +
+  '</td>\
+</tr>'
+
                     <tr>\
                         <td colspan="2">' + (feature.properties['Archive URL'] !== null ? autolinker.link(String(feature.properties['Archive URL']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
                     </tr>\
