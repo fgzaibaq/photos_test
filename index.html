@@ -170,7 +170,7 @@
                     <tr>\
                         <td colspan="2">' + (feature.properties['Image URL'] !== null ?
     				'<div class="popup-image-box">' +
-        				'<img src="images/' + encodeURIComponent(
+        				'<img src="images/' + encodeURI(
             					String(feature.properties['Image URL']).trim()
         				) + '">' +
     				'</div>' : '') + '</td>\
